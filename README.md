@@ -3,7 +3,7 @@ fenli-tables的服务端。基于node和[mongodb](http://mongodb.com)。
 
 ## 部署
 ### node
-npm build
+`npm build`生成build目录文件。
 ### pm2
 `pm2 start pm2.conf.json --env production`  
 ~export NODE_ENV=production && node index.js~
@@ -36,8 +36,7 @@ server {
 }
 ```
 
-### mongodb
-使用mongodb。
+## mongodb的使用
 1. 运行mongodb。
   - 创建data/db文件夹。
   - 运行mongodb服务。
@@ -45,11 +44,11 @@ server {
       `mongod --dbpath=./data/db --port 27017`
     - 线上环境
       `mongod -f ./mongod.conf`  
-      *如果出现`ERROR: child process failed, exited with error number 1`错误，是[因为/var/log/mongod.log没有权限](https://stackoverflow.com/questions/28591101/starting-mongod-fork-error-child-process-failed-exited-with-error-number-1)，加上sudo即可解决。*
-2. 初始化数据库
-运行`mongo localhost:27017/fenli db_init.js`。*数据库名为fenli*。
+      如果出现*ERROR: child process failed, exited with error number 1*错误，是因为[权限问题](https://stackoverflow.com/questions/28591101/starting-mongod-fork-error-child-process-failed-exited-with-error-number-1)，加上sudo即可解决。
+2. 初始化数据库  
+  运行`mongo localhost:27017/fenli db_init.js`。*数据库名为fenli*。
 
-### npm
+## npm
 `npm start`。默认端口为3333
 
 `npm run watch`。开发阶段使用，会监听文件更改，刷新app。
