@@ -1,23 +1,11 @@
 # fenli-datatables-server
-fenli-tables的服务端。基于node和mongodb。
-
-### mongodb
-使用mongodb。
-- 运行mongodb。
-创建data/db文件夹。
-#### dev
-`mongod --dbpath=./data/db --port 27017`
-#### prod
-`mongod -f ./mongod.conf`
-*如果出现`ERROR: child process failed, exited with error number 1`错误，是[因为/var/log/mongod.log没有权限](https://stackoverflow.com/questions/28591101/starting-mongod-fork-error-child-process-failed-exited-with-error-number-1)，加上sudo即可解决。*
-- 初始化数据库
-运行`mongo localhost:27017/fenli db_init.js`。*数据库名为fenli*。
+fenli-tables的服务端。基于node和[mongodb](http://mongodb.com)。
 
 ## 部署
 ### node
 npm build
 ### pm2
-`pm2 start pm2.conf.json --env production`
+`pm2 start pm2.conf.json --env production`  
 ~export NODE_ENV=production && node index.js~
 ### nginx
 ```
@@ -48,10 +36,20 @@ server {
 }
 ```
 
-## npm
-npm start
+### mongodb
+使用mongodb。
+1. 运行mongodb。
++ 创建data/db文件夹。
++ 运行mongodb服务。
+ - dev `mongod --dbpath=./data/db --port 27017`
+ - prod `mongod -f ./mongod.conf`  
+  *如果出现`ERROR: child process failed, exited with error number 1`错误，是[因为/var/log/mongod.log没有权限](https://stackoverflow.com/questions/28591101/starting-mongod-fork-error-child-process-failed-exited-with-error-number-1)，加上sudo即可解决。*
+2. 初始化数据库
+运行`mongo localhost:27017/fenli db_init.js`。*数据库名为fenli*。
 
-`npm run watch`。watch，开发阶段使用，会监听文件更改，刷新app。
+### npm
+`npm start`。默认端口为3333
 
-npm build。发布时使用，将代码编译为es5。
+`npm run watch`。开发阶段使用，会监听文件更改，刷新app。
 
+`npm build`。发布时使用，将代码编译至build目录，当NODE_EVN为production时会使用build目录文件。
