@@ -39,11 +39,13 @@ server {
 ### mongodb
 使用mongodb。
 1. 运行mongodb。
-+ 创建data/db文件夹。
-+ 运行mongodb服务。
- - dev `mongod --dbpath=./data/db --port 27017`
- - prod `mongod -f ./mongod.conf`  
-  *如果出现`ERROR: child process failed, exited with error number 1`错误，是[因为/var/log/mongod.log没有权限](https://stackoverflow.com/questions/28591101/starting-mongod-fork-error-child-process-failed-exited-with-error-number-1)，加上sudo即可解决。*
+  - 创建data/db文件夹。
+  - 运行mongodb服务。
+    - 开发环境 
+      `mongod --dbpath=./data/db --port 27017`
+    - 线上环境
+      `mongod -f ./mongod.conf`  
+      *如果出现`ERROR: child process failed, exited with error number 1`错误，是[因为/var/log/mongod.log没有权限](https://stackoverflow.com/questions/28591101/starting-mongod-fork-error-child-process-failed-exited-with-error-number-1)，加上sudo即可解决。*
 2. 初始化数据库
 运行`mongo localhost:27017/fenli db_init.js`。*数据库名为fenli*。
 
