@@ -1,0 +1,37 @@
+{
+  "name": "fenli-datatables-server",
+  "version": "1.0.0",
+  "description": "database: fenli mongod --dbpath=./data/db --port 27017",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "watch": "nodemon --exec npm run start",
+    "build": "babel src -d build"
+  },
+  "dependencies": {
+    "@koa/cors": "^2.2.1",
+    "babel-polyfill": "^6.20.0",
+    "koa": "^2.5.0",
+    "koa-bodyparser": "^3.2.0",
+    "koa-router": "^7.4.0",
+    "lodash": "^4.17.5",
+    "mongodb": "^2.2.21",
+    "mongoose": "^4.13.11",
+    "winston": "^3.0.0-rc1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-3": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "nodemon": "^1.17.1"
+  },
+  "author": "",
+  "license": "ISC",
+  "babel": {
+    "presets": [
+      "env",
+      "stage-3"
+    ]
+  }
+}
