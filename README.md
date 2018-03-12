@@ -53,4 +53,4 @@ server {
 
 `npm run watch`。开发阶段使用，会监听文件更改，刷新app。
 
-`npm build`。发布时使用，将代码编译至build目录，当NODE_EVN为production时会使用build目录文件。
+`npm build`。发布时使用，将代码编译至build目录，当NODE_ENV为production时会使用build目录文件。
