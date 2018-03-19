@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node index.js",
     "watch": "nodemon --exec npm run start",
-    "build": "babel src -d build"
+    "build": "babel src -d build",
+    "prod": "export NODE_ENV=production && node index.js"
   },
   "dependencies": {
     "@koa/cors": "^2.2.1",
@@ -28,6 +29,10 @@
   },
   "author": "",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/egoo-wh/fenli-datatables-server"
+  },
   "babel": {
     "presets": [
       "env",

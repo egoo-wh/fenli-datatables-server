@@ -29,10 +29,12 @@ var MongooseDB = function () {
 	_createClass(MongooseDB, [{
 		key: 'connect',
 		value: function connect() {
+			var url = 'mongodb://localhost:27017/fenli';
+			if (process.env.NODE_ENV == 'production') {
+				url = 'mongodb://fenli-db/fenli';
+			}
 			// Use connect method to connect to the Server 
 			return new Promise(function (resolve, reject) {
-				// Connection URL 
-				var url = 'mongodb://localhost:27017/fenli';
 				_mongoose2.default.connect(url, { useMongoClient: true });
 				var db = _mongoose2.default.connection;
 				db.on('error', function (err) {

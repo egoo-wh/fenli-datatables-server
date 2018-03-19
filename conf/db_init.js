@@ -1,3 +1,4 @@
+db = db.getSiblingDB('fenli');
 db.createCollection('fenliaddrs');
 db.fenliaddrs.insertMany([
 	{"name":"地下城与勇士", "product":["dnf"], "url":"//game.gtimg.cn/images/dnf/cp/"},

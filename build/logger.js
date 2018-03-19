@@ -13,12 +13,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var logger = _winston2.default.createLogger({
   level: 'info',
   format: _winston2.default.format.json(),
-  transports: [
-  //
-  // - Write to all logs with level `info` and below to `combined.log` 
-  // - Write all logs error (and below) to `error.log`.
-  //
-  new _winston2.default.transports.File({ filename: 'error.log', level: 'error' }), new _winston2.default.transports.File({ filename: 'all.log' })]
+  transports: [new _winston2.default.transports.File({ filename: 'logs/error.log', level: 'error' })]
 });
 
 //

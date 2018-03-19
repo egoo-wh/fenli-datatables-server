@@ -1,0 +1,19 @@
+version: "2"
+services:
+  app:
+    container_name: fenli-app
+    restart: always
+    build: .
+    volumes:
+      - ./logs:/app/logs
+    ports:
+      - 3333:3333
+    links:
+      - db
+  db:
+    container_name: fenli-db
+    image: mongo:3.6.3
+    volumes:
+      - ./data/db:/data/db
+      - ./conf:/data/conf
+    # command: ["mongo", "/data/conf/db_init.js"]

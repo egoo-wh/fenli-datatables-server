@@ -35,8 +35,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 var app = new _koa2.default().on('error', function (err) {
   _logger2.default.error(err);
 }).use((0, _cors2.default)({
-  // 'Access-Control-Allow-Origin': '*'
-  'Access-Control-Allow-Origin': 'egooidea.com'
+  'Access-Control-Allow-Origin': '*'
+  // 'Access-Control-Allow-Origin': 'egooidea.com'
 }))
 // .use(async (ctx, next) => {
 //   ctx.state.collections = config.collections;

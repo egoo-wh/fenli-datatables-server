@@ -1,0 +1,12 @@
+.git
+node_modules
+npm-debug.log
+.gitignore
+README.md
+README2.md
+data
+src
+mongod.conf
+pm2.conf.json
+*.md
+*.log
