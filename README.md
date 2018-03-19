@@ -14,26 +14,39 @@ fenli-tables的服务端。基于node、[mongodb](http://mongodb.com)和[docker]
 
 ### 使用docker进行部署
 下列2种方式均可，推荐docker-compose。
-#### docker-compose方式
-- `docker-compose up -d`
-- `docker exec fenli-db bash -c 'mongo /data/conf/db_init.js'`
+1. docker-compose方式
+  - `docker-compose up -d`
+  - `docker exec fenli-db bash -c 'mongo /data/conf/db_init.js'`
 
-#### “原始”方式
+2. “原始”方式
+
 ##### image for the database(mongo)
+
 ```
-docker run -it --rm --name fenli-db --volume "$PWD/data/db":/data/db --volume "$PWD/conf":/data/conf -d mongo:3.6.3
+docker run -it --rm \
+--name fenli-db \
+--volume "$PWD/data/db":/data/db \
+--volume "$PWD/conf":/data/conf \
+-d mongo:3.6.3
 
 docker exec fenli-db bash -c 'mongo /data/conf/db_init.js'
 
 ```
+
 ##### image for the application(node)
+
 ```
 docker image build -t fenli-server-app .
 
-docker run --rm -p 3333:3333 -it --link fenli-db:mongo --name fenli-app -d fenli-server-app
+docker run --rm \
+-it \
+-p 3333:3333 \
+--link fenli-db:mongo \
+--name fenli-app \
+-d fenli-server-app
 ```
 
-## 连接mongo应使用`mongodb://fenli-db/fenli`而不是`mongodb://localhost:27017/fenli`.[详解](https://stackoverflow.com/questions/41861908/cant-connect-to-docker-mongodb)
+连接mongo应使用`mongodb://fenli-db/fenli`而不是`mongodb://localhost:27017/fenli`.[详解](https://stackoverflow.com/questions/41861908/cant-connect-to-docker-mongodb)
 
 ### nginx
 ```
@@ -81,11 +94,3 @@ server {
 ### 开发阶段
 - `mongod --dbpath=./data/db --port 27017`。开启mongo服务。
 - `npm run watch`。运行node app.
-
-
-CLIENT
-
-```
-docker pull registry.docker-cn.com/library/nginx:1.13.9
-run -d -p 127.0.0.1:6680:80 --rm --name mynginx --volume "$PWD/html":/usr/share/nginx/html  registry.docker-cn.com/library/nginx:1.13.9
-```
