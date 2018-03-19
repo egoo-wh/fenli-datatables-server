@@ -35,12 +35,40 @@ docker run --rm -p 3333:3333 -it --link fenli-db:mongo --name fenli-app -d fenli
 
 ## 连接mongo应使用`mongodb://fenli-db/fenli`而不是`mongodb://localhost:27017/fenli`.[详解](https://stackoverflow.com/questions/41861908/cant-connect-to-docker-mongodb)
 
+### nginx
+```
+upstream fenli_upsteam {
+  server 127.0.0.1:3333;
+  keepalive 64;
+}
 
-## mongodb
+server {
+  listen 80;
+  server_name 192.168.1.11;
+  access_log /var/log/nginx/fenli.api.log;
+
+  location /fenli_server/ {
+    rewrite ^/fenli_server/(.*)$ /$1 break;
+
+    proxy_pass http://fenli_upsteam;
+    proxy_read_timeout 240s;
+    proxy_redirect off;
+    #proxy_redirect http://fenli_server/ /fenli_server;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection 'upgrade';
+    proxy_set_header Host $host;
+    proxy_set_header X-NginX-Proxy true;
+    proxy_cache_bypass $http_upgrade;
+  }
+}
+```
+
+### mongodb
 数据库名为fenli
 ./conf/db_init.js 					数据库初始化脚本，包含初始化数据。
 
-## npm
+### npm
 默认端口为3333
 `npm start`。node index.js
 

@@ -17,7 +17,7 @@ upstream fenli_upsteam {
 server {
   listen 80;
   server_name 192.168.1.11;
-  access_log /var/log/nginx/fenliApp.log;
+  access_log /var/log/nginx/fenli.api.log;
 
   location /fenli_server/ {
     rewrite ^/fenli_server/(.*)$ /$1 break;
